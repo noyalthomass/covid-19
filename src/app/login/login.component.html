@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div >
+    <div class="container main  p-5  ">
+        <div class="row d-flex justify-content-center align-items-center mt-5">
+            <div class="col-md-6">
+                <p class=" font-size">Covid 19</p>
+            </div>
+            <div class="col-md-6">
+                <div class="shadow p-3 rounded">
+                    <p class="fs-3 text-center">Login</p>
+                    <form (ngSubmit)="login()" [formGroup]="loginForm">
+                        <div class="mb-2 mt-5">
+                            <input type="text" name="username" formControlName="username" class="form-control p-3" placeholder="Username">
+                            <p *ngIf="(this.loginForm.get('username')?.touched || this.loginForm.get('username')?.dirty) && this.loginForm.get('username')?.errors" class="text-center mt-2 text-danger">Invalid format!</p>
+                        </div>
+                        <div class="mb-2 mt-5">
+                            <input type="password" name="password" formControlName="password" class="form-control p-3" placeholder="Password">
+                            <p *ngIf="(this.loginForm.get('password')?.touched || this.loginForm.get('password')?.dirty) && this.loginForm.get('password')?.errors" class="text-center mt-2 text-danger">Invalid format!</p>
+                        </div>
+                        <div class="mb-5 mt-5 ">
+                            <button type="submit" class="btn btn-primary p-3 fs-5 rounded-pill col-md-12 col-12">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
