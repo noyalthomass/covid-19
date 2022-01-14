@@ -2,22 +2,36 @@
     <div class="container main  p-5  ">
         <div class="row d-flex justify-content-center align-items-center mt-5">
             <div class="col-md-6">
-                <p class=" font-size">Covid 19</p>
+                <p class=" font-size">{{'Covid-19'|translate}}</p>
             </div>
             <div class="col-md-6">
                 <div class="shadow p-3 rounded">
-                    <p class="fs-3 text-center">Login</p>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <p class="fs-3">{{'Login'|translate}}</p>
+                        </div>
+                        <div>
+                            <select #selectLanguage (change)="changeLang(selectLanguage.value)" class="form-select" >
+                                <option  disabled selected i18n="choose-lang|select the language">{{'Choose-language'|translate}}</option>
+                                <option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}</option>
+                               
+                              </select>
+                        </div>
+                        
+                       
+                    </div>
+                    
                     <form (ngSubmit)="login()" [formGroup]="loginForm">
                         <div class="mb-2 mt-5">
-                            <input type="text" name="username" formControlName="username" class="form-control p-3" placeholder="Username">
-                            <p *ngIf="(this.loginForm.get('username')?.touched || this.loginForm.get('username')?.dirty) && this.loginForm.get('username')?.errors" class="text-center mt-2 text-danger">Invalid format!</p>
+                            <input type="text" name="username" formControlName="username" class="form-control p-3" [placeholder]="'Username'|translate"/>
+                            <p *ngIf="(this.loginForm.get('username')?.touched || this.loginForm.get('username')?.dirty) && this.loginForm.get('username')?.errors" class="text-center mt-2 text-danger">{{'Invalid-format!'|translate}}</p>
                         </div>
                         <div class="mb-2 mt-5">
-                            <input type="password" name="password" formControlName="password" class="form-control p-3" placeholder="Password">
-                            <p *ngIf="(this.loginForm.get('password')?.touched || this.loginForm.get('password')?.dirty) && this.loginForm.get('password')?.errors" class="text-center mt-2 text-danger">Invalid format!</p>
+                            <input type="password" name="password" formControlName="password" class="form-control p-3" [placeholder]="'Password'|translate">
+                            <p *ngIf="(this.loginForm.get('password')?.touched || this.loginForm.get('password')?.dirty) && this.loginForm.get('password')?.errors" class="text-center mt-2 text-danger">I{{'Invalid-format!'|translate}}</p>
                         </div>
                         <div class="mb-5 mt-5 ">
-                            <button  type="submit" [disabled]="!loginForm.valid" class="btn btn-primary col-md-12 col-12 p-3 rounded-pill fs-5"  >Login</button>
+                            <button  type="submit" [disabled]="!loginForm.valid" class="btn btn-primary col-md-12 col-12 p-3 rounded-pill fs-5"  >{{"Login"|translate}}</button>
                         </div>
                     </form>
                 </div>
