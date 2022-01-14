@@ -1,2 +1,57 @@
 <app-navbar></app-navbar>
-<p>dashboard works!</p>
+<div class="container p-2">
+    <div class="mt-4">
+        <div class="row">
+            <div class="col-md-1 col-1">
+                <p class="text-muted fs-1 ">Total</p>
+            </div>
+            <div class="col-md-11 col-11 mt-3">
+                <hr>
+            </div>
+        </div>
+        
+    </div>
+    <div class="mt-2">
+        <div class="row justify-content-between d-flex p-3">
+            <div class="col-md-3 col-12 mt-2 p-4 text-center text-primary shadow b-radius">
+                <p class="fs-3">Total Cases</p>
+                <p class="fs-4">{{covidData.report.cases}}</p>
+            </div>
+            <div class="col-md-3 col-12 mt-2 p-4 text-center text-primary shadow b-radius">
+                <p class="fs-3">Total Deaths</p>
+                <p class="fs-4">{{covidData.report.deaths}}</p>
+            </div>
+            <div class="col-md-3 col-12 mt-2 p-4 text-center text-primary shadow b-radius">
+                <p class="fs-3">Total Recovered</p>
+                <p class="fs-4">{{covidData.report.recovered}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+        <div class="row">
+            <div class="col-md-1">
+                <p class="text-muted fs-2 ">Today</p>
+            </div>
+            <div class="col-md-11 mt-3 ">
+                <hr>
+            </div>
+        </div>
+        
+    </div>
+    <div class="mt-4">
+        <div class="row justify-content-between d-flex p-3">
+            <div class="col-md-3 p-4 text-center text-primary shadow b-radius">
+                <p class="fs-3"> Cases</p>
+                <p class="fs-4">{{covidData.report.todayCases}} </p>
+            </div>
+            <div class="col-md-3 p-4 text-center text-primary shadow b-radius">
+                <p class="fs-3">Deaths</p>
+                <p class="fs-4">{{covidData.report.todayDeaths}}</p>
+            </div>
+            <div class="col-md-3 p-4 text-center text-primary shadow b-radius">
+                <p class="fs-3">Recovered</p>
+                <p class="fs-4">{{covidData.report.todayRecovered}}</p>
+            </div>
+        </div>
+    </div>
+</div>

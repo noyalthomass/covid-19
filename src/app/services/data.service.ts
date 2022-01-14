@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 
@@ -5,10 +6,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
+  url = 'https://corona.lmao.ninja/v2/all'
 
   database = {username:"fingent",password:"fingent"}
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   isLoggedIn(){
     const token = localStorage.getItem("token")
@@ -26,5 +28,9 @@ export class DataService {
     }else{
       return false
     }
+  }
+
+  getCovidData(){
+    return this.http.get<any>(this.url)
   }
 }
