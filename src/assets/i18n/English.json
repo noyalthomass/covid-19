@@ -4,5 +4,13 @@
     "Username":"Username",
     "Password":"Password",
     "Invalid-format!":"Invalid format!",
-    "Covid-19":"Covid 19"
+    "Covid-19":"Covid 19",
+    "Total":"Total",
+    "Total-Cases":"Total Cases",
+    "Total-Deaths":"Total Deaths",
+    "Total-Recovered":"Total Recovered",
+    "Today":"Today",
+    "Cases":"Cases",
+    "Deaths":"Deaths",
+    "Recovered":"Recovered"
 }

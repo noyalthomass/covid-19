@@ -4,5 +4,13 @@
     "Username":"اسم المستخدم",
     "Password":"كلمة المرور",
     "Invalid-format!":"تنسيق غير صحيح!",
-    "Covid-19":"كوفيد 19"
+    "Covid-19":"كوفيد 19",
+    "Total":"مجموع",
+    "Total-Cases":"إجمالي الحالات",
+    "Total-Deaths":"إجمالي الوفيات",
+    "Total-Recovered":"إجمالي المسترد",
+    "Today":"اليوم",
+    "Cases":"حالات",
+    "Deaths":"حالات الوفاة",
+    "Recovered":"تعافى"
 }
