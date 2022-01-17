@@ -9,7 +9,7 @@ const routes: Routes = [
   {path:'',component:LoginComponent},
   {path:'home',component:DashboardComponent},
   {path:'countries',component:CountriesComponent},
-  {path:'edit-country',component:EditCountryComponent}
+  {path:'edit-country/:id',component:EditCountryComponent}
 ];
 
 @NgModule({

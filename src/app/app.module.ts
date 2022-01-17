@@ -8,6 +8,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CountriesComponent } from './countries/countries.component';
 import { EditCountryComponent } from './edit-country/edit-country.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSortModule } from '@angular/material/sort';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input'; 
 
 @NgModule({
   declarations: [
@@ -20,7 +26,14 @@ import { EditCountryComponent } from './edit-country/edit-country.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule,
+    HttpClientModule,
+    MatSortModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

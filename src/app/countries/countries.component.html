@@ -1,1 +1,58 @@
-<p>countries works!</p>
+<div class="main container">
+    <div class="page-header">
+        <div class="header-title">
+            <p class="fw-light text-muted">Countries</p>
+        </div>
+        <div class="header-actions">
+            <div class="search"><a class="btn"><i class="fas fa-search"></i></a></div>
+            <div class="col-md-3"> <input  [value]="searchText" class="form-control" type="text" placeholder="Search Country" (change)="onChangeEvent($event)"></div>
+            <div class="ms-3"><select class="sort action-item form-select" aria-label="sort" aria-placeholder="Sort By">
+                    <option>Number</option>
+                    <option>Alphabatic</option>Sort By
+                </select></div>
+            <div class="ms-3"> <select class="sort action-item form-select" aria-label="sort">
+                    <option>Language</option>
+                </select></div>
+
+            <mat-paginator class="bg-white text-dark" [length]="100" [pageSize]="10" [hidePageSize]="true"
+                aria-label="Select page" (PageEvent)="handlePagination($event)">
+            </mat-paginator>
+        </div>
+    </div>
+    <div class="page-body">
+        <div class="no-data text-muted" *ngIf="filteredCountries.length===0">
+            No Data Found...!!
+        </div>
+        <div class="card" *ngFor="let country of filteredCountries">
+            <div class="card-body">
+                <div class="country-header">
+                    <img src="{{country.flag}}">
+                    <p class="card-title card-item ">{{country.title}}</p>
+                </div>
+                <div class="country-body">
+                    <div class="country-section">
+                        <div class="card-item text-muted ">Cases</div>
+                        <div class="card-item text-muted">{{country.cases}}</div>
+                    </div>
+                    <div class="country-section">
+                        <div class="card-item text-muted">Deaths</div>
+                        <div class="card-item text-muted">{{country.deaths}}</div>
+                    </div>
+                    <div class="country-section">
+                        <div class="card-item text-muted">Recovered</div>
+                        <div class="card-item text-muted">{{country.recovered}}</div>
+                    </div>
+                    <div class="country-section">
+                        <div class="card-item text-muted">Tests</div>
+                        <div class="card-item text-muted">{{country.tests}}</div>
+                    </div>
+                    <div class="country-section">
+                        <div class="card-item text-muted">Population</div>
+                        <div class="card-item text-muted">{{country.population}}</div>
+                    </div>
+                </div>
+                <button class="edit-btn" [routerLink]="['/edit-country',country.updated]"><i class="far fa-pencil"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
