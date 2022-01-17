@@ -7,11 +7,13 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
   url = 'https://corona.lmao.ninja/v2/all'
-
   database = {username:"fingent",password:"fingent"}
+  constructor(private http: HttpClient) {}
 
-  constructor(private http:HttpClient) { }
-
+  public get(url: string, options?: any) {
+    return this.http.get(url, options);
+  
+  }
   isLoggedIn(){
     const token = localStorage.getItem("token")
     return token;
@@ -34,3 +36,5 @@ export class DataService {
     return this.http.get<any>(this.url)
   }
 }
+
+

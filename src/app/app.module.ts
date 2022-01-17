@@ -8,7 +8,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CountriesComponent } from './countries/countries.component';
 import { EditCountryComponent } from './edit-country/edit-country.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input'; 
 import {TranslateModule,TranslateLoader} from '@ngx-translate/core';
 import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 
@@ -27,8 +31,13 @@ export function httpLoaderFactory(http:HttpClient){
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule,
     HttpClientModule,
+    MatSortModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader:{
