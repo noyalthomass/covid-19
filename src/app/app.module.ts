@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input'; 
 import {TranslateModule,TranslateLoader} from '@ngx-translate/core';
 import { TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { MatChipsModule } from '@angular/material/chips';
 
 export function httpLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http)
@@ -39,6 +40,7 @@ export function httpLoaderFactory(http:HttpClient){
     ReactiveFormsModule,
     MatInputModule,
     HttpClientModule,
+    MatChipsModule,
     TranslateModule.forRoot({
       loader:{
         provide:TranslateLoader,
