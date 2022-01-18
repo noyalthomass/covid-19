@@ -17,14 +17,14 @@
         />
       </div>
       <div class="ms-3">
-        <select
+        <select #countrySort
           class="sort action-item form-select"
           aria-label="sort"
-          aria-placeholder="Sort By">
-          <option>Country Name</option>
-          <option>Number of Cases</option>
-          <option>Number of Deaths</option>
-          <option>Number of Recovered</option>
+          aria-placeholder="Sort By"  (change)='onOptionsSelected(countrySort.value)'>
+          <option value="name">Country Name</option>
+          <option value="cases">Number of Cases</option>
+          <option value="deaths">Number of Deaths</option>
+          <option value="recovered">Number of Recovered</option>
         </select>
       </div>
       <div class="ms-3">
