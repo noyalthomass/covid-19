@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { Countries } from './countries.model';
+import { Countries } from '../models/index'
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { PageEvent, MatPaginator } from '@angular/material/paginator';
+import { PageEvent} from '@angular/material/paginator';
 import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
@@ -118,7 +118,6 @@ export class CountriesComponent implements OnInit {
         this.filteredCountries.sort((a, b) => a.recovered - b.recovered);
         break;
       default:
-        console.log(value);
     }
   }
 }

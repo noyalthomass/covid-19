@@ -24,16 +24,14 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show()
-
     setTimeout(()=>{
       this.spinner.hide()
     },700)
     this.service.getCovidData().subscribe((datas)=>{
-      this.covidData.report=datas 
-      
-    })
-    
+      this.covidData.report=datas   
+    }) 
   }
+  
   changeLang(lang:any){
     localStorage.setItem("lang",lang)
     this.selectLanguage=localStorage.getItem("lang")||'English'
