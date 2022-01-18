@@ -1,75 +1,80 @@
 <app-navbar></app-navbar>
 <div class="edit-country" *ngIf="country">
   <div class="edit-header">
-    <div class="text-muted title">Edit {{ country.title }}</div>
+    <div class="text-muted title">{{'Edit'|translate}} {{ country.title }}</div>
     <hr />
   </div>
   <form
     class="edit-form"
     #countryForm="ngForm"
+    [formGroup]="editForm"
     (ngSubmit)="onClickSubmit(countryForm.value)"
   >
     <div class="main">
       <div class="container">
         <div class="country-section">
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label class="section-item text-muted">Cases </mat-label
+            <mat-label class="section-item text-muted ">{{'Cases'|translate}} </mat-label
             ><input
               type="text"
               [(ngModel)]="country.cases"
+              formControlName = "cases"
               name="cases"
               matInput
               formControlEdit="editFormControl"
             />
             <mat-error
-            *ngIf="countryText.invalid"
-            >
-            {{getErrorMessage()}}
-            </mat-error>
+            *ngIf="!editForm.get('editFormControl')?.hasError('required')"
+          >
+          Not a valid number !
+          </mat-error>
           </mat-form-field>
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label class="section-item text-muted">Deaths</mat-label
+            <mat-label class="section-item text-muted">{{'Deaths'|translate}}</mat-label
             ><input
               type="text"
               name="deaths"
               [(ngModel)]="country.deaths"
               matInput
+              formControlName = "deaths"
               formControlEdit="editFormControl"
             />
             <mat-error
-            *ngIf="countryText.invalid"
+              *ngIf="!editForm.get('editFormControl')?.hasError('required')"
             >
-            {{getErrorMessage()}}
+            Not a valid number !
             </mat-error>
           </mat-form-field>
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label class="section-item text-muted">Recovered</mat-label
+            <mat-label class="section-item text-muted">{{'Recovered'|translate}}</mat-label
             ><input
               name="recovered"
               type="text"
               [(ngModel)]="country.recovered"
+              formControlName = "recovered"
               matInput
               formControlEdit="editFormControl"
             />
             <mat-error
-            *ngIf="countryText.invalid"
+              *ngIf="!editForm.get('editFormControl')?.hasError('required')"
             >
-            {{getErrorMessage()}}
+            Not a valid number !
             </mat-error>
           </mat-form-field>
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label class="section-item text-muted">Tests</mat-label
+            <mat-label class="section-item text-muted">{{'Tests'|translate}}</mat-label
             ><input
               type="text"
               name="tests"
               [(ngModel)]="country.tests"
+              formControlName = "tests"
               matInput
               formControlEdit="editFormControl"
             />
             <mat-error
-            *ngIf="countryText.invalid"
+              *ngIf="!editForm.get('editFormControl')?.hasError('required')"
             >
-            {{getErrorMessage()}}
+            Not a valid number !
             </mat-error>
           </mat-form-field>
         </div>
@@ -80,9 +85,9 @@
           class="btn btn-outline-primary"
           (click)="resetForm()"
         >
-          Cancel
+          {{'Cancel'|translate}}
         </button>
-        <button type="submit" class="btn btn-outline-primary">Save</button>
+        <button type="submit" class="btn btn-outline-primary">{{"Save"|translate}}</button>
       </div>
     </div>
   </form>

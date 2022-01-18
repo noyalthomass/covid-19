@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Countries } from './countries.model';
+import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-countries',
-  templateUrl: './countries.component.html',
+  templateUrl: './countries.component.html', 
   styleUrls: ['./countries.component.scss'],
 })
 export class CountriesComponent implements OnInit {
@@ -19,8 +20,19 @@ export class CountriesComponent implements OnInit {
   length: number = 30;
   fooService: any;
   isLoading = true;
+  selectLanguage:string=''
 
-  constructor(private ds: DataService, private router: Router) {}
+  constructor(private ds: DataService, private router: Router,public translate:TranslateService) {
+    translate.addLangs(['English','French','Arab']);
+    translate.setDefaultLang('English');
+    this.selectLanguage = localStorage.getItem("lang")||"English"
+    translate.use(this.selectLanguage)
+  }
+  changeLang(lang:any){
+    localStorage.setItem("lang",lang)
+    this.selectLanguage=localStorage.getItem("lang")||'English'
+    this.translate.use(this.selectLanguage)
+  }
 
   ngOnInit(): void {
     this.ds.sharedCountries.subscribe((countries) => {

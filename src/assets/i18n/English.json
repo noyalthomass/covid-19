@@ -1,5 +1,6 @@
 {
     "Choose-language":"Choose language",
+    "Language":"Language",
     "Login":"Login",
     "Username":"Username",
     "Password":"Password",
@@ -12,5 +13,18 @@
     "Today":"Today",
     "Cases":"Cases",
     "Deaths":"Deaths",
-    "Recovered":"Recovered"
+    "Recovered":"Recovered",
+    "Countries":"Countries",
+    "Country-Name":"Country Name",
+    "Number-of-Cases":"Number of Cases",
+    "Number-of-Deaths":"Number of Deaths",
+    "Number-of-Recovered":"Number of Recovered",
+    "No-Data-Found...!!":"No Data Found...!!",
+    "Tests":"Tests",
+    "Population":"Population",
+    "Search-Country":"Search-Country",
+    "Edit":"Edit",
+    "Cancel":"Cancel",
+    "Save":"Save",
+    "Sort":"Sort"
 }

@@ -12,6 +12,8 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core';
 import { DataService } from '../services/data.service';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import Swal from 'sweetalert2';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -33,27 +35,30 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./edit-country.component.scss'],
 })
 export class EditCountryComponent implements OnInit {
-  editForm: FormGroup;
+  selectLanguage:string=''
   countries: Countries[] = [];
   country: Countries 
   id: number 
   matcher = new MyErrorStateMatcher();
   
-  countryText = new FormControl ('', [Validators.required,Validators.pattern("^[0-9]*$")]);
-  getErrorMessage() {
-    if (this.countryText.hasError('required')) {
-      return 'You must enter a value';
-    }
+  editForm = this.formBuilder.group({
+    'cases':['',[Validators.required,Validators.pattern('[0-9]*')]],
+    'deaths':['',[Validators.required,Validators.pattern('[0-9]*')]],
+    'recovered':['',[Validators.required,Validators.pattern('[0-9]*')]],
+    'tests':['',[Validators.required,Validators.pattern('[0-9]*')]],
+  })
 
-    return this.countryText.hasError('countryText') ? 'Not a valid number' : '';
-  }
+  
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private ds: DataService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public translate:TranslateService
   ) {
     
+    this.selectLanguage = localStorage.getItem("lang")||"English"
+    translate.use(this.selectLanguage)
   }
 
   ngOnInit(): void {
@@ -104,10 +109,12 @@ export class EditCountryComponent implements OnInit {
     );
   }
   resetForm() {
+    
     this.router.navigateByUrl('/countries');
   }
 
   onClickSubmit(value:any){
+   if(this.editForm.valid){
     const updatedCountryIndex=this.countries.findIndex(f=>f.updated=this.id)
     console.log(updatedCountryIndex)
     if(updatedCountryIndex>=0){
@@ -121,5 +128,14 @@ export class EditCountryComponent implements OnInit {
       this.ds.nextCountries(this.countries)
       this.router.navigateByUrl('/countries');
     }
+   }else{
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Please enter valid information. ',
+      
+    })
+   }
+    
   }
 }
