@@ -38,19 +38,22 @@ export class EditCountryComponent implements OnInit {
   country: Countries 
   id: number 
   matcher = new MyErrorStateMatcher();
+  
+  countryText = new FormControl ('', [Validators.required,Validators.pattern("^[0-9]*$")]);
+  getErrorMessage() {
+    if (this.countryText.hasError('required')) {
+      return 'You must enter a value';
+    }
 
+    return this.countryText.hasError('countryText') ? 'Not a valid number' : '';
+  }
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private ds: DataService,
     private activatedRoute: ActivatedRoute
   ) {
-    this.editForm = new FormGroup({
-      editFormControl: new FormControl('', [
-        Validators.required,
-        Validators.pattern('[0-9]*'),
-      ]),
-    });
+    
   }
 
   ngOnInit(): void {
@@ -101,12 +104,10 @@ export class EditCountryComponent implements OnInit {
     );
   }
   resetForm() {
-    this.editForm.reset();
     this.router.navigateByUrl('/countries');
   }
 
   onClickSubmit(value:any){
-    console.log(value)
     const updatedCountryIndex=this.countries.findIndex(f=>f.updated=this.id)
     console.log(updatedCountryIndex)
     if(updatedCountryIndex>=0){
