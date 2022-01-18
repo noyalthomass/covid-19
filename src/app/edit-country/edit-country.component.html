@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="edit-country" *ngIf="country">
   <div class="edit-header">
-    <div class="text-muted title">Edit {{ country.title }}</div>
+    <div class="text-muted title">{{'Edit'|translate}} {{ country.title }}</div>
     <hr />
   </div>
   <form
@@ -13,7 +13,7 @@
       <div class="container">
         <div class="country-section">
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label class="section-item text-muted">Cases </mat-label
+            <mat-label class="section-item text-muted ">{{'Cases'|translate}} </mat-label
             ><input
               type="text"
               [(ngModel)]="country.cases"
@@ -28,7 +28,7 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label class="section-item text-muted">Deaths</mat-label
+            <mat-label class="section-item text-muted">{{'Deaths'|translate}}</mat-label
             ><input
               type="text"
               name="deaths"
@@ -43,7 +43,7 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label class="section-item text-muted">Recovered</mat-label
+            <mat-label class="section-item text-muted">{{'Recovered'|translate}}</mat-label
             ><input
               name="recovered"
               type="text"
@@ -58,7 +58,7 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label class="section-item text-muted">Tests</mat-label
+            <mat-label class="section-item text-muted">{{'Tests'|translate}}</mat-label
             ><input
               type="text"
               name="tests"
@@ -80,9 +80,9 @@
           class="btn btn-outline-primary"
           (click)="resetForm()"
         >
-          Cancel
+          {{'Cancel'|translate}}
         </button>
-        <button type="submit" class="btn btn-outline-primary">Save</button>
+        <button type="submit" class="btn btn-outline-primary">{{"Save"|translate}}</button>
       </div>
     </div>
   </form>
