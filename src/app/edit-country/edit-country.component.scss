@@ -30,8 +30,8 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        height: 200px;
-        width: 45%;
+        height: 250px;
+        width: 36%;
         background: #f2f2f2;
         overflow: hidden;
         border-radius: 20px;
@@ -43,19 +43,19 @@
           font-weight: 1px;
           display: flex;
           flex-flow: row wrap;
-          padding: 10x;
+          padding: 10px;
+          
 
           .section-item {
             &:not(:last-child) {
               margin-right: 80px;
               width: 200px;
+
             }
-            border-bottom: 1px solid;
-            display: flex;
-            flex-flow: column wrap;
-            padding: 15px;
+            padding: 10px;
 
             input {
+              padding: 50px;
               background: none;
               outline: none;
               border: none;
@@ -67,7 +67,7 @@
     .button-group {
       display: flex;
       justify-content: right;
-      margin-top: 380px;
+      margin-top: 400px;
       margin-right: 250px;
 
       button {
