@@ -12,5 +12,14 @@
     "Today":"اليوم",
     "Cases":"حالات",
     "Deaths":"حالات الوفاة",
-    "Recovered":"تعافى"
+    "Recovered":"تعافى",
+    "Countries":"حالات",
+    "Country-Name":"حالات الوفاة",
+    "Number-of-Cases":"حالات الوفاة",
+    "NUmber-of-Deaths":"حالات الوفاة",
+    "Number-of-Recovered":"حالات الوفاة",
+    "No-Data-Found...!!":"تعافى",
+    "Tests":"تعافى",
+    "Population":"تعافى",
+    "Search-Country":"حالات الوفاة"
 }
