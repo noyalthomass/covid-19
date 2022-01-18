@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { DataService } from '../services/data.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 @Component({
@@ -14,7 +15,7 @@ export class DashboardComponent implements OnInit {
     report:{}
   }
 
-  constructor(private service:DataService,public translate:TranslateService) {
+  constructor(private service:DataService,public translate:TranslateService,private spinner: NgxSpinnerService) {
     translate.addLangs(['English','French','Arab']);
     translate.setDefaultLang('English');
     this.selectLanguage = localStorage.getItem("lang")||"English"
@@ -22,9 +23,12 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.spinner.show()
     this.service.getCovidData().subscribe((datas)=>{
       this.covidData.report=datas 
+      this.spinner.hide()
     })
+    
   }
   changeLang(lang:any){
     localStorage.setItem("lang",lang)

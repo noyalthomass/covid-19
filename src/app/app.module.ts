@@ -17,6 +17,7 @@ import {TranslateModule,TranslateLoader} from '@ngx-translate/core';
 import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxSpinnerModule } from "ngx-spinner";
+
 export function httpLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http)
 } 
