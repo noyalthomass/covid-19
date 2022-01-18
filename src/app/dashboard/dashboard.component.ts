@@ -24,9 +24,13 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show()
+
+    setTimeout(()=>{
+      this.spinner.hide()
+    },700)
     this.service.getCovidData().subscribe((datas)=>{
       this.covidData.report=datas 
-      this.spinner.hide()
+      
     })
     
   }
