@@ -10,7 +10,7 @@ const routes: Routes = [
   {path:'',component:LoginComponent},
   {path:'home',component:DashboardComponent,canActivate: [AuthGuard]},
   {path:'countries',component:CountriesComponent,canActivate: [AuthGuard]},
-  {path:'edit-country',component:EditCountryComponent,canActivate: [AuthGuard]}
+  {path:'edit-country/:id',component:EditCountryComponent,canActivate: [AuthGuard]}
 ];
 
 @NgModule({

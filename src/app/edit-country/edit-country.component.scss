@@ -1,0 +1,81 @@
+.edit-country {
+
+  .edit-header {
+    display: flex;
+    padding: 20px 30px;
+    .title {
+        font-size:35px;
+        margin-left: 40px;
+    }
+    hr {
+        height: 1px;
+        flex: 1;
+        width: 100%;
+        margin-left:40px;
+    }
+  }
+
+  .row {
+    padding: 40px;
+  }
+  .edit-form {
+    display: flex;
+    flex-direction: column;
+
+    .main {
+      overflow: hidden;
+
+      .container {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        height: 200px;
+        width: 45%;
+        background: #f2f2f2;
+        overflow: hidden;
+        border-radius: 20px;
+        cursor: pointer;
+        box-shadow: 0 0 20px 8px #d0d0d0;
+
+        .country-section {
+          font-size: 21px;
+          font-weight: 1px;
+          display: flex;
+          flex-flow: row wrap;
+          padding: 10x;
+
+          .section-item {
+            &:not(:last-child) {
+              margin-right: 80px;
+              width: 200px;
+            }
+            border-bottom: 1px solid;
+            display: flex;
+            flex-flow: column wrap;
+            padding: 15px;
+
+            input {
+              background: none;
+              outline: none;
+              border: none;
+            }
+          }
+        }
+      }
+    }
+    .button-group {
+      display: flex;
+      justify-content: right;
+      margin-top: 380px;
+      margin-right: 250px;
+
+      button {
+        border-radius: 20px;
+        width: 140px;
+        height: 30px;
+        align-items: center;
+      }
+    }
+  }
+}
