@@ -116,7 +116,6 @@ export class EditCountryComponent implements OnInit {
   onClickSubmit(value:any){
    if(this.editForm.valid){
     const updatedCountryIndex=this.countries.findIndex(f=>f.updated=this.id)
-    console.log(updatedCountryIndex)
     if(updatedCountryIndex>=0){
       this.countries[updatedCountryIndex]={
         ...this.countries[updatedCountryIndex],
@@ -126,7 +125,14 @@ export class EditCountryComponent implements OnInit {
         tests:value.tests
       }
       this.ds.nextCountries(this.countries)
+      
       this.router.navigateByUrl('/countries');
+      Swal.fire({
+        icon: 'success',
+        title: 'Data updated successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
     }
    }else{
     Swal.fire({
