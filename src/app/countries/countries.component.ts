@@ -4,6 +4,7 @@ import { Countries } from './countries.model';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-countries',
@@ -22,7 +23,7 @@ export class CountriesComponent implements OnInit {
   isLoading = true;
   selectLanguage:string=''
 
-  constructor(private ds: DataService, private router: Router,public translate:TranslateService) {
+  constructor(private ds: DataService, private router: Router,public translate:TranslateService,private spinner: NgxSpinnerService) {
     translate.addLangs(['English','French','Arab']);
     translate.setDefaultLang('English');
     this.selectLanguage = localStorage.getItem("lang")||"English"
@@ -35,18 +36,18 @@ export class CountriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.ds.sharedCountries.subscribe((countries) => {
       this.countries = countries;
       this.filteredCountries = this.countries.slice(0, this.pageSize);
       this.length = this.countries.length;
     });
-
     this.ds.nextCountries(this.filteredCountries);
     if (!this.filteredCountries.length) {
+      this.spinner.show()
       this.ds.get('https://corona.lmao.ninja/v2/countries').subscribe(
         (result: any) => {
           this.isLoading = false;
-
           if (result) {
             const updatedCountries: Countries[] = [];
             result.forEach((country: any) => {
@@ -61,8 +62,7 @@ export class CountriesComponent implements OnInit {
                 updated: country.updated,
               });
             });
-
-            this.ds.nextCountries(updatedCountries);
+            this.ds.nextCountries(updatedCountries); 
           }
         },
         (result: any) => {
@@ -71,7 +71,9 @@ export class CountriesComponent implements OnInit {
             this.isLoading = false;
           }
         }
+        
       );
+      this.spinner.hide()
     }
   }
   onChangeEvent(event: any) {

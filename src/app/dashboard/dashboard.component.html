@@ -21,15 +21,15 @@
     <div class="mt-2">
         <div class="row justify-content-between d-flex p-3">
             <div class="col-md-3 col-12 mt-2 p-4 text-center text-primary shadow b-radius">
-                <p class="fs-3">{{'Total-Cases'|translate}}</p>
+                <p class="fs-3 mb-4">{{'Total-Cases'|translate}}</p>
                 <p class="fs-4">{{covidData.report.cases}}</p>
             </div>
             <div class="col-md-3 col-12 mt-2 p-4 text-center text-primary shadow b-radius">
-                <p class="fs-3">{{'Total-Deaths'|translate}}</p>
+                <p class="fs-3 mb-4">{{'Total-Deaths'|translate}}</p>
                 <p class="fs-4">{{covidData.report.deaths}}</p>
             </div>
             <div class="col-md-3 col-12 mt-2 p-4 text-center text-primary shadow b-radius">
-                <p class="fs-3">{{'Total-Recovered'|translate}}</p>
+                <p class="fs-3 mb-4">{{'Total-Recovered'|translate}}</p>
                 <p class="fs-4">{{covidData.report.recovered}}</p>
             </div>
         </div>
@@ -48,18 +48,19 @@
     <div class="mt-4">
         <div class="row justify-content-between d-flex p-3">
             <div class="col-md-3 p-4 text-center text-primary shadow b-radius">
-                <p class="fs-3"> {{'Cases'|translate}}</p>
+                <p class="fs-3 mb-4"> {{'Cases'|translate}}</p>
                 <p class="fs-4">{{covidData.report.todayCases}} </p>
             </div>
             <div class="col-md-3 p-4 text-center text-primary shadow b-radius">
-                <p class="fs-3">{{'Deaths'|translate}}</p>
+                <p class="fs-3 mb-4">{{'Deaths'|translate}}</p>
                 <p class="fs-4">{{covidData.report.todayDeaths}}</p>
             </div>
             <div class="col-md-3 p-4 text-center text-primary shadow b-radius">
-                <p class="fs-3">{{'Recovered'|translate}}</p>
+                <p class="fs-3 mb-4">{{'Recovered'|translate}}</p>
                 <p class="fs-4">{{covidData.report.todayRecovered}}</p>
             </div>
         </div>
     </div>
     
 </div>
+<ngx-spinner></ngx-spinner>
