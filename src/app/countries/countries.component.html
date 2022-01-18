@@ -2,7 +2,7 @@
 <div class="main container">
   <div class="page-header">
     <div class="header-title">
-      <p class="fw-light text-muted">Countries</p>
+      <p class="fw-light text-muted">{{'Countries'|translate}}</p>
     </div>
     <div class="header-actions">
       <div class="search">
@@ -13,7 +13,7 @@
           [value]="searchText"
           class="form-control"
           type="text"
-          placeholder="Search Country"
+          [placeholder]="'Search-Country'|translate"
           (change)="onChangeEvent($event)"
         />
       </div>
@@ -22,18 +22,20 @@
           class="sort action-item form-select"
           aria-label="sort"
           aria-placeholder="Sort By"  (change)='onOptionsSelected(countrySort.value)'>
-          <option value="name">Country Name</option>
-          <option value="cases">Number of Cases</option>
-          <option value="deaths">Number of Deaths</option>
-          <option value="recovered">Number of Recovered</option>
+          <option value="name">{{'Country-Name'|translate}}</option>
+          <option value="cases">{{'Number-of-Cases'|translate}}</option>
+          <option value="deaths">{{'Number-of-Deaths'|translate}}</option>
+          <option value="recovered">{{'Number-of-Recovered'|translate}}</option>
+        </select>
+      </div>
+      <div class="ms-3 ">
+        <select #selectLanguage (change)="changeLang(selectLanguage.value)" class="form-select" >
+          <option  disabled selected >{{'Language'|translate}} </option>
+          <option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}</option>
         </select>
       </div>
       <div class="ms-3">
-        <select class="sort action-item form-select" aria-label="sort">
-          <option>Language</option>
-        </select>
-      </div>
-      <mat-paginator
+        <mat-paginator
         class="bg-white text-dark"
         #paginator
         [length]="length"
@@ -42,6 +44,7 @@
         (page)="OnPageChange($event)"
       >
       </mat-paginator>
+      </div>
     </div>
   </div>
   <div class="page-body">
@@ -49,7 +52,7 @@
       class="no-data text-muted"
       *ngIf="!isLoading && filteredCountries.length === 0"
     >
-      No Data Found...!!
+     {{' No-Data-Found...!!'|translate}}
     </div>
     <div class="card" *ngFor="let country of filteredCountries">
       <div class="card-body">
@@ -59,23 +62,23 @@
         </div>
         <div class="country-body">
           <div class="country-section">
-            <div class="card-item text-muted">Cases</div>
+            <div class="card-item text-muted">{{'Cases'|translate}}</div>
             <div class="card-item text-muted">{{ country.cases }}</div>
           </div>
           <div class="country-section">
-            <div class="card-item text-muted">Deaths</div>
+            <div class="card-item text-muted">{{'Deaths'|translate}}</div>
             <div class="card-item text-muted">{{ country.deaths }}</div>
           </div>
           <div class="country-section">
-            <div class="card-item text-muted">Recovered</div>
+            <div class="card-item text-muted">{{'Recovered'|translate}}</div>
             <div class="card-item text-muted">{{ country.recovered }}</div>
           </div>
           <div class="country-section">
-            <div class="card-item text-muted">Tests</div>
+            <div class="card-item text-muted">{{'Tests'|translate}}</div>
             <div class="card-item text-muted">{{ country.tests }}</div>
           </div>
           <div class="country-section">
-            <div class="card-item text-muted">Population</div>
+            <div class="card-item text-muted">{{'Population'|translate}}</div>
             <div class="card-item text-muted">{{ country.population }}</div>
           </div>
         </div>

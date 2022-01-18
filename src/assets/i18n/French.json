@@ -12,6 +12,15 @@
     "Today":"Aujourd",
     "Cases":"Cas",
     "Deaths":"Deaths",
-    "Recovered":"Rétabli"
+    "Recovered":"Rétabli",
+    "Countries":"Contuirs",
+    "Country-Name":"Conturis nmae",
+    "Number-of-Cases":"Nubmre fie cesaed",
+    "Number-of-Deaths":"Nubmre fie dtheas",
+    "Number-of-Recovered":"Numbr fe Recvrd",
+    "No-Data-Found...!!":"no deta fuond",
+    "Tests":"Tastes",
+    "Population":"Peupletins",
+    "Search-Country":"Sreach countri"
 
 }
