@@ -16,7 +16,7 @@ import {MatInputModule} from '@angular/material/input';
 import {TranslateModule,TranslateLoader} from '@ngx-translate/core';
 import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { MatChipsModule } from '@angular/material/chips';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 export function httpLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http)
 } 
@@ -41,6 +41,7 @@ export function httpLoaderFactory(http:HttpClient){
     MatInputModule,
     HttpClientModule,
     MatChipsModule,
+    NgxSpinnerModule,
     TranslateModule.forRoot({
       loader:{
         provide:TranslateLoader,
