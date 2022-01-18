@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Countries } from '../models';
 import {
   FormBuilder,
   FormControl,
@@ -9,7 +10,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { Countries } from './edit-country.model';
 import { DataService } from '../services/data.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -35,17 +35,16 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class EditCountryComponent implements OnInit {
   editForm: FormGroup;
   countries: Countries[] = [];
-  country:Countries={
-    title:'',
-    cases:0,
-    deaths:0,
-    recovered:0,
-    tests:0,
-  }
-  id:string | null=""
+  country: Countries 
+  id: number 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private formBuilder: FormBuilder, private router: Router,private ds: DataService,private activatedRoute:ActivatedRoute ) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private ds: DataService,
+    private activatedRoute: ActivatedRoute
+  ) {
     this.editForm = new FormGroup({
       editFormControl: new FormControl('', [
         Validators.required,
@@ -55,38 +54,43 @@ export class EditCountryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-this.id=this.activatedRoute.snapshot.paramMap.get('id')
-
-   this.getData()
+    const countryId=this.activatedRoute.snapshot.paramMap.get('id');
+    if(countryId){
+      this.id=Number(countryId)
+    }
+    this.ds.sharedCountries.subscribe((countries) => {
+      if(!countries.length){
+        this.getData()
+      }
+     else{
+      this.countries = countries;
+      const selectedCountry=countries.find(f=>f.updated===this.id)
+      if(selectedCountry){
+        this.country=selectedCountry
+      }
+     }
+    });
   }
-
 
   getData(): void {
     this.ds.get('https://corona.lmao.ninja/v2/countries').subscribe(
       (result: any) => {
         if (result) {
+          const updatedCountries: Countries[] = [];
           result.forEach((country: any) => {
-            this.countries.push({
+            updatedCountries.push({
+              flag: country.countryInfo.flag,
               title: country.country,
               cases: country.cases,
               deaths: country.deaths,
               recovered: country.recovered,
               tests: country.tests,
-
+              population: country.population,
+              updated: country.updated,
             });
-
-            if(country.updated==this.id){
-
-              this.country.title=country.country,
-              this.country.cases=country.cases,
-              this.country.deaths=country.deaths,
-              this.country.recovered=country.recovered,
-              this.country.tests=country.tests
-            }
-           
           });
-          console.log(this.country)
+
+          this.ds.nextCountries(updatedCountries);
         }
       },
       (result: any) => {
@@ -99,5 +103,22 @@ this.id=this.activatedRoute.snapshot.paramMap.get('id')
   resetForm() {
     this.editForm.reset();
     this.router.navigateByUrl('/countries');
+  }
+
+  onClickSubmit(value:any){
+    console.log(value)
+    const updatedCountryIndex=this.countries.findIndex(f=>f.updated=this.id)
+    console.log(updatedCountryIndex)
+    if(updatedCountryIndex>=0){
+      this.countries[updatedCountryIndex]={
+        ...this.countries[updatedCountryIndex],
+        cases:value.cases,
+        deaths:value.deaths,
+        recovered:value.recovered,
+        tests:value.tests
+      }
+      this.ds.nextCountries(this.countries)
+      this.router.navigateByUrl('/countries');
+    }
   }
 }
