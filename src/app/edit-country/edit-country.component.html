@@ -7,6 +7,7 @@
   <form
     class="edit-form"
     #countryForm="ngForm"
+    [formGroup]="editForm"
     (ngSubmit)="onClickSubmit(countryForm.value)"
   >
     <div class="main">
@@ -17,6 +18,7 @@
             ><input
               type="text"
               [(ngModel)]="country.cases"
+              formControlName = "cases"
               name="cases"
               matInput
               formControlEdit="editFormControl"
@@ -24,7 +26,7 @@
             <mat-error
               *ngIf="!editForm.get('editFormControl')?.hasError('required')"
             >
-              Please enter correct values
+            Not a valid number !
             </mat-error>
           </mat-form-field>
           <mat-form-field class="example-full-width" appearance="fill">
@@ -34,12 +36,13 @@
               name="deaths"
               [(ngModel)]="country.deaths"
               matInput
+              formControlName = "deaths"
               formControlEdit="editFormControl"
             />
             <mat-error
               *ngIf="!editForm.get('editFormControl')?.hasError('required')"
             >
-              Please enter correct values
+            Not a valid number !
             </mat-error>
           </mat-form-field>
           <mat-form-field class="example-full-width" appearance="fill">
@@ -48,13 +51,14 @@
               name="recovered"
               type="text"
               [(ngModel)]="country.recovered"
+              formControlName = "recovered"
               matInput
               formControlEdit="editFormControl"
             />
             <mat-error
               *ngIf="!editForm.get('editFormControl')?.hasError('required')"
             >
-              Please enter correct values
+              Not a valid number !
             </mat-error>
           </mat-form-field>
           <mat-form-field class="example-full-width" appearance="fill">
@@ -63,13 +67,14 @@
               type="text"
               name="tests"
               [(ngModel)]="country.tests"
+              formControlName = "tests"
               matInput
               formControlEdit="editFormControl"
             />
             <mat-error
-              *ngIf="!editForm.get('editFormControl')?.hasError('required')"
+              *ngIf="editForm.get('tests')?.errors"
             >
-              Please enter correct values
+            Not a valid number !
             </mat-error>
           </mat-form-field>
         </div>

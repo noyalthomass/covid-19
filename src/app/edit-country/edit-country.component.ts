@@ -13,6 +13,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { DataService } from '../services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import Swal from 'sweetalert2';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -35,11 +36,16 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class EditCountryComponent implements OnInit {
   selectLanguage:string=''
-  editForm: FormGroup;
   countries: Countries[] = [];
   country: Countries 
   id: number 
   matcher = new MyErrorStateMatcher();
+  editForm = this.formBuilder.group({
+    'cases':['',[Validators.required,Validators.pattern('[0-9]*')]],
+    'deaths':['',[Validators.required,Validators.pattern('[0-9]*')]],
+    'recovered':['',[Validators.required,Validators.pattern('[0-9]*')]],
+    'tests':['',[Validators.required,Validators.pattern('[0-9]*')]],
+  })
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,12 +56,6 @@ export class EditCountryComponent implements OnInit {
   ) {
     this.selectLanguage = localStorage.getItem("lang")||"English"
     translate.use(this.selectLanguage)
-    this.editForm = new FormGroup({
-      editFormControl: new FormControl('', [
-        Validators.required,
-        Validators.pattern('[0-9]*'),
-      ]),
-    });
   }
 
   ngOnInit(): void {
@@ -106,12 +106,12 @@ export class EditCountryComponent implements OnInit {
     );
   }
   resetForm() {
-    this.editForm.reset();
+    
     this.router.navigateByUrl('/countries');
   }
 
   onClickSubmit(value:any){
-   
+   if(this.editForm.valid){
     const updatedCountryIndex=this.countries.findIndex(f=>f.updated=this.id)
     console.log(updatedCountryIndex)
     if(updatedCountryIndex>=0){
@@ -125,5 +125,14 @@ export class EditCountryComponent implements OnInit {
       this.ds.nextCountries(this.countries)
       this.router.navigateByUrl('/countries');
     }
+   }else{
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Please enter valid information. ',
+      
+    })
+   }
+    
   }
 }
