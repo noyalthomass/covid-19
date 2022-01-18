@@ -36,6 +36,12 @@ export class CountriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.countries){
+      this.spinner.show()
+      setTimeout(()=>{
+        this.spinner.hide()
+      },700)
+    }
     
     this.ds.sharedCountries.subscribe((countries) => {
       this.countries = countries;
@@ -44,7 +50,7 @@ export class CountriesComponent implements OnInit {
     });
     this.ds.nextCountries(this.filteredCountries);
     if (!this.filteredCountries.length) {
-      this.spinner.show()
+      
       this.ds.get('https://corona.lmao.ninja/v2/countries').subscribe(
         (result: any) => {
           this.isLoading = false;
@@ -64,6 +70,7 @@ export class CountriesComponent implements OnInit {
             });
             this.ds.nextCountries(updatedCountries); 
           }
+          
         },
         (result: any) => {
           if (result.error) {
@@ -71,10 +78,10 @@ export class CountriesComponent implements OnInit {
             this.isLoading = false;
           }
         }
-        
       );
-      this.spinner.hide()
+      
     }
+    
   }
   onChangeEvent(event: any) {
     const searchValue = event.target.value.toLowerCase();
