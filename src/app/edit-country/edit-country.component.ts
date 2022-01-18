@@ -40,6 +40,7 @@ export class EditCountryComponent implements OnInit {
   country: Countries 
   id: number 
   matcher = new MyErrorStateMatcher();
+  
   editForm = this.formBuilder.group({
     'cases':['',[Validators.required,Validators.pattern('[0-9]*')]],
     'deaths':['',[Validators.required,Validators.pattern('[0-9]*')]],
@@ -47,6 +48,7 @@ export class EditCountryComponent implements OnInit {
     'tests':['',[Validators.required,Validators.pattern('[0-9]*')]],
   })
 
+  
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -54,6 +56,7 @@ export class EditCountryComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public translate:TranslateService
   ) {
+    
     this.selectLanguage = localStorage.getItem("lang")||"English"
     translate.use(this.selectLanguage)
   }
