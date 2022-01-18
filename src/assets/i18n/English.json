@@ -22,6 +22,9 @@
     "No-Data-Found...!!":"No Data Found...!!",
     "Tests":"Tests",
     "Population":"Population",
-    "Search-Country":"Search-Country"
+    "Search-Country":"Search-Country",
+    "Edit":"Edit",
+    "Cancel":"Cancel",
+    "Save":"Save"
     
 }
