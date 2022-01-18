@@ -40,6 +40,7 @@ export class EditCountryComponent implements OnInit {
   country: Countries 
   id: number 
   matcher = new MyErrorStateMatcher();
+  
   editForm = this.formBuilder.group({
     'cases':['',[Validators.required,Validators.pattern('[0-9]*')]],
     'deaths':['',[Validators.required,Validators.pattern('[0-9]*')]],
@@ -47,6 +48,7 @@ export class EditCountryComponent implements OnInit {
     'tests':['',[Validators.required,Validators.pattern('[0-9]*')]],
   })
 
+  
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -54,6 +56,7 @@ export class EditCountryComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public translate:TranslateService
   ) {
+    
     this.selectLanguage = localStorage.getItem("lang")||"English"
     translate.use(this.selectLanguage)
   }
@@ -113,7 +116,6 @@ export class EditCountryComponent implements OnInit {
   onClickSubmit(value:any){
    if(this.editForm.valid){
     const updatedCountryIndex=this.countries.findIndex(f=>f.updated=this.id)
-    console.log(updatedCountryIndex)
     if(updatedCountryIndex>=0){
       this.countries[updatedCountryIndex]={
         ...this.countries[updatedCountryIndex],
@@ -123,7 +125,14 @@ export class EditCountryComponent implements OnInit {
         tests:value.tests
       }
       this.ds.nextCountries(this.countries)
+      
       this.router.navigateByUrl('/countries');
+      Swal.fire({
+        icon: 'success',
+        title: 'Data updated successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
     }
    }else{
     Swal.fire({
