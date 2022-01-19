@@ -37,5 +37,4 @@ export class DashboardComponent implements OnInit {
     this.selectLanguage=localStorage.getItem("lang")||'English'
     this.translate.use(this.selectLanguage)
   }
-
 }
