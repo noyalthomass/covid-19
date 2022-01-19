@@ -41,8 +41,8 @@ export function httpLoaderFactory(http:HttpClient){
     ReactiveFormsModule,
     MatInputModule,
     HttpClientModule,
-    NgxSpinnerModule,
     MatChipsModule,
+    NgxSpinnerModule,
     TranslateModule.forRoot({
       loader:{
         provide:TranslateLoader,

@@ -3,31 +3,14 @@ import { Router } from '@angular/router';
 import { Countries } from '../models';
 import {
   FormBuilder,
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  NgForm,
   Validators,
 } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
 import { DataService } from '../services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
+
 
 @Component({
   selector: 'app-edit-country',
@@ -39,7 +22,6 @@ export class EditCountryComponent implements OnInit {
   countries: Countries[] = [];
   country: Countries 
   id: number 
-  matcher = new MyErrorStateMatcher();
   
   editForm = this.formBuilder.group({
     'cases':['',[Validators.required,Validators.pattern('[0-9]*')]],
@@ -109,7 +91,6 @@ export class EditCountryComponent implements OnInit {
     );
   }
   resetForm() {
-    
     this.router.navigateByUrl('/countries');
   }
 
