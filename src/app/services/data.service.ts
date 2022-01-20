@@ -19,7 +19,7 @@ export class DataService {
     this.countries.next(countries)
   }
 
-  public get(url: string, options?: any) {
+  get(url: string, options?: any) {
     return this.http.get(url, options);
   }
   isLoggedIn() {
