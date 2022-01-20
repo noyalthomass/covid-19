@@ -17,6 +17,7 @@ import {TranslateModule,TranslateLoader} from '@ngx-translate/core';
 import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxSpinnerModule } from "ngx-spinner";
+import {MatTableModule} from '@angular/material/table';
 import { CountriesTableComponent } from './countries-table/countries-table.component';
 
 export function httpLoaderFactory(http:HttpClient){
@@ -45,6 +46,7 @@ export function httpLoaderFactory(http:HttpClient){
     HttpClientModule,
     MatChipsModule,
     NgxSpinnerModule,
+    MatTableModule,
     TranslateModule.forRoot({
       loader:{
         provide:TranslateLoader,
