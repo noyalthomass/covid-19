@@ -43,4 +43,8 @@ export class DataService {
   getCovidData() {
     return this.http.get<any>(this.url);
   }
+
+  getCountriesData(){
+    return this.http.get<Countries>('https://corona.lmao.ninja/v2/countries');
+  }
 }
