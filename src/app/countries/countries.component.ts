@@ -40,7 +40,7 @@ export class CountriesComponent implements OnInit {
       this.spinner.show()
       setTimeout(()=>{
         this.spinner.hide()
-      },700)
+      },1000)
     }
     
     this.ds.sharedCountries.subscribe((countries) => {
@@ -99,7 +99,6 @@ export class CountriesComponent implements OnInit {
     const currentIndex = event.pageIndex * event.pageSize;
     const nextIndex = currentIndex + event.pageSize;
     this.filteredCountries = this.countries.slice(currentIndex, nextIndex);
-
     return event;
   }
 
