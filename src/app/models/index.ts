@@ -10,10 +10,3 @@ export interface Countries {
     
   }
 
-// export interface CountryInfo{
-//   id:number,
-//   iso2:string,
-//   lat:number,
-//   long:number,
-//   flag:string
-// }
