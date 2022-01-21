@@ -96,7 +96,7 @@ export class EditCountryComponent implements OnInit {
 
   onClickSubmit(value:any){
    if(this.editForm.valid){
-    const updatedCountryIndex=this.countries.findIndex(f=>f.updated=this.id)
+    const updatedCountryIndex=this.countries.findIndex(f=>f.updated==this.id)
     if(updatedCountryIndex>=0){
       this.countries[updatedCountryIndex]={
         ...this.countries[updatedCountryIndex],

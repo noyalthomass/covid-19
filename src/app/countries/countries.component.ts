@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { Countries } from '../models/index';
+  import { Countries } from '../models/index';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
@@ -41,11 +41,11 @@ export class CountriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.countries) {
-      this.spinner.show();
-      setTimeout(() => {
-        this.spinner.hide();
-      }, 700);
+    if(this.countries){
+      this.spinner.show()
+      setTimeout(()=>{
+        this.spinner.hide()
+      },250)
     }
 
     this.ds.sharedCountries.subscribe((countries) => {
@@ -100,7 +100,6 @@ export class CountriesComponent implements OnInit {
     const currentIndex = event.pageIndex * event.pageSize;
     const nextIndex = currentIndex + event.pageSize;
     this.filteredCountries = this.countries.slice(currentIndex, nextIndex);
-
     return event;
   }
 
