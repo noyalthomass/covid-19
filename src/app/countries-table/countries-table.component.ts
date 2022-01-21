@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ReplaySubject, takeUntil } from 'rxjs';
+import {  Subject, takeUntil } from 'rxjs';
 import { Countries } from '../models/index';
 import { DataService } from '../services/data.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -14,7 +14,7 @@ const ELEMENT_DATA: Countries[] = [];
   templateUrl: './countries-table.component.html',
   styleUrls: ['./countries-table.component.scss'],
 })
-export class CountriesTableComponent implements OnInit {
+export class CountriesTableComponent implements OnInit ,OnDestroy{
   displayedColumns: string[] = [
     'title',
     'flag',
@@ -25,7 +25,7 @@ export class CountriesTableComponent implements OnInit {
     'population',
   ];
   dataSource: any;
-  destroy$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -70,5 +70,9 @@ export class CountriesTableComponent implements OnInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }
