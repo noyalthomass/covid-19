@@ -18,7 +18,6 @@ export class CountriesTableComponent implements OnInit ,OnDestroy{
   countries: Countries[] = [];
   searchText: string = '';
   Search: string = '';
-  filteredCountries: Countries[] = [];
   displayedColumns: string[] = [
     'title',
     'flag',
@@ -77,9 +76,14 @@ export class CountriesTableComponent implements OnInit ,OnDestroy{
   }
   onChangeEvent(event: any) {
     const searchValue = event.target.value.toLowerCase();
-
-     this.dataSource= this.countries.filter((ELEMENT_DATA) => {
-      return ELEMENT_DATA.title.toLowerCase().includes(searchValue);
+     this.dataSource= ELEMENT_DATA.filter((ELEMENT_DATA) => {
+      return (ELEMENT_DATA.title.toLowerCase().includes(searchValue)||
+      ELEMENT_DATA.cases.toString().includes(searchValue)||
+      ELEMENT_DATA.deaths.toString().includes(searchValue)||
+      ELEMENT_DATA.recovered.toString().includes(searchValue)||
+      ELEMENT_DATA.tests.toString().includes(searchValue)||
+      ELEMENT_DATA.population.toString().includes(searchValue)
+      );
     });
   }
   ngOnDestroy(): void {
