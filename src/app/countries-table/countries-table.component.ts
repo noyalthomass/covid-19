@@ -15,6 +15,9 @@ const ELEMENT_DATA: Countries[] = [];
   styleUrls: ['./countries-table.component.scss'],
 })
 export class CountriesTableComponent implements OnInit ,OnDestroy{
+  countries: Countries[] = [];
+  searchText: string = '';
+  Search: string = '';
   displayedColumns: string[] = [
     'title',
     'flag',
@@ -24,7 +27,7 @@ export class CountriesTableComponent implements OnInit ,OnDestroy{
     'tests',
     'population',
   ];
-  dataSource: any;
+  dataSource:any;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   @ViewChild(MatSort) sort: MatSort;
@@ -33,7 +36,7 @@ export class CountriesTableComponent implements OnInit ,OnDestroy{
   constructor(
     private service: DataService,
     private spinner: NgxSpinnerService,
-    private _liveAnnouncer: LiveAnnouncer
+    private _liveAnnouncer: LiveAnnouncer,
   ) {}
 
   ngOnInit(): void {
@@ -71,8 +74,21 @@ export class CountriesTableComponent implements OnInit ,OnDestroy{
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+  onChangeEvent(event: any) {
+    const searchValue = event.target.value.toLowerCase();
+     this.dataSource= ELEMENT_DATA.filter((ELEMENT_DATA) => {
+      return (ELEMENT_DATA.title.toLowerCase().includes(searchValue)||
+      ELEMENT_DATA.cases.toString().includes(searchValue)||
+      ELEMENT_DATA.deaths.toString().includes(searchValue)||
+      ELEMENT_DATA.recovered.toString().includes(searchValue)||
+      ELEMENT_DATA.tests.toString().includes(searchValue)||
+      ELEMENT_DATA.population.toString().includes(searchValue)
+      );
+    });
+  }
   ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
 }
+

@@ -1,3 +1,12 @@
+.search-item {
+    display: flex;
+    justify-content: end;
+
+    .search {
+        position: absolute;
+        right:11%;
+      }
+}
 table {
     width: 100%;
     .cell{
