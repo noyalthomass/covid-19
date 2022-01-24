@@ -1,32 +1,30 @@
 <app-navbar></app-navbar>
 <div class="container p-5">
-  <div class="mt-5">
+  <div class="mt-5 d-flex justify-content-between">
     <div class="mb-5">
-      <p class="fs-2 fw-bold text-center text-muted">Covid Data Information</p>
+      <p class="fs-2 fw-bold text-muted">Covid Data Information</p>
+    </div>
+    <div class="mb-5">
+    
     </div>
     <div class="search-item">
     <div class="search">
       <a class="btn"><i class="fas fa-search"></i></a>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-12">
       <input
-        [value]="searchText"
+      #searchKey 
         class="form-control"
         type="text"
-        [placeholder]="Search"
-        (change)="onChangeEvent($event)"
+        placeholder="Search"
+        (keyup)="applyFilter(searchKey.value)"
       />
     </div>
     </div>
   </div>
 
   <div class="mat-elevation-z8">
-    <div
-    class="no-data text-muted"
-    *ngIf="dataSource.length === 0"
-  >
-   No Data Found...!!
-  </div>
+    
     <table
       mat-table
       [dataSource]="dataSource"
