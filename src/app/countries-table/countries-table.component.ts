@@ -26,6 +26,7 @@ export class CountriesTableComponent implements OnInit ,OnDestroy{
   ];
   dataSource: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
+  isData:boolean;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -38,8 +39,9 @@ export class CountriesTableComponent implements OnInit ,OnDestroy{
 
   ngOnInit(): void {
     this.loadData();
+    
   }
-
+  
   loadData() {
     this.spinner.show();
     this.service

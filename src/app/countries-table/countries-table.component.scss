@@ -1,15 +1,27 @@
-table {
-    width: 100%;
-    .cell{
-        
-        width: 300px;
-    }
-    .avatar{
-        width: 80px;
-        height: 80px;
-    }
-    
+.search-item {
+  display: flex;
+  justify-content: end;
+
+  .search {
+    position: absolute;
+    right: 11%;
   }
-  .paginator{
-    background-color: #3941e6;
+}
+.no-data {
+  padding: 330px;
+  font-size: 40px;
+}
+  table {
+    width: 100%;
+    .cell {
+      width: 300px;
+    }
+    .avatar {
+      width: 80px;
+      height: 80px;
+    }
+  
+}
+.paginator {
+  background-color: #3941e6;
 }
