@@ -7,4 +7,6 @@ export interface Countries {
     tests:number;
     population:number;
     updated:number;
+    
   }
+

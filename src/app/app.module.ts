@@ -17,8 +17,8 @@ import {TranslateModule,TranslateLoader} from '@ngx-translate/core';
 import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxSpinnerModule } from "ngx-spinner";
-import { CountriesTableComponent } from './countries-table/countries-table.component';
 import {MatTableModule} from '@angular/material/table';
+import { CountriesTableComponent } from './countries-table/countries-table.component';
 
 export function httpLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http)

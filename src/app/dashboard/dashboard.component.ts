@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,OnDestroy} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { DataService } from '../services/data.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class DashboardComponent implements OnInit {
   covidData:any={
     report:{}
   }
+  destroy$:Subject<boolean> = new Subject<boolean>();
 
   constructor(private service:DataService,public translate:TranslateService,private spinner: NgxSpinnerService) {
     translate.addLangs(['English','French','Arab']);
@@ -35,5 +37,9 @@ export class DashboardComponent implements OnInit {
     localStorage.setItem("lang",lang)
     this.selectLanguage=localStorage.getItem("lang")||'English'
     this.translate.use(this.selectLanguage)
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }
