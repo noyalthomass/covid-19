@@ -71,6 +71,35 @@ export class CountriesTableComponent implements OnInit ,OnDestroy{
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
+
+  applyFilter(filterValue:string){
+    let value = parseInt(filterValue)
+    console.log(value);
+    
+   if(!value){
+    this.filterByName(filterValue)
+   }else if(value){
+     console.log("number"); 
+   }
+    
+
+  }
+  filterByName(filterName:string){
+
+    
+    if(filterName== ''|| NaN ||null || undefined  ){
+      this.dataSource = new MatTableDataSource<Countries>(ELEMENT_DATA);
+     }else{
+      let searchText = filterName.toLowerCase()
+      
+      this.dataSource = ELEMENT_DATA.find((country:any)=>{
+        country.title===searchText
+      })
+     }
+   
+  }
+  
+
   ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

@@ -1,8 +1,17 @@
 <app-navbar></app-navbar>
 <div class="container p-5">
-  <div class="mt-5">
+  <div class="mt-5 d-flex justify-content-between">
     <div class="mb-5">
-      <p class="fs-2 fw-bold text-center text-muted">Covid Data Information</p>
+      <p class="fs-2 fw-bold text-muted">Covid Data Information</p>
+    </div>
+    <div class="mb-5">
+      <mat-form-field class="example-form-field" appearance="fill">
+        <mat-label>Search</mat-label>
+        <input matInput #searchKey (keyup)="applyFilter(searchKey.value)" >
+        <button  matSuffix mat-icon-button aria-label="Clear" class="btn btn-outline-primary " >
+          Search
+        </button>
+      </mat-form-field>
     </div>
   </div>
 
