@@ -58,4 +58,8 @@ export class DataService {
   getCountriesData(){
     return this.http.get<Countries>('https://corona.lmao.ninja/v2/countries');
   }
+
+  getToken(){
+    return localStorage.getItem('token')
+  }
 }
