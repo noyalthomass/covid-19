@@ -14,6 +14,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private readonly injector:Injector) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    console.log("token",request);
     let authService = this.injector.get(DataService)
     let req = request.clone({
       setHeaders:{

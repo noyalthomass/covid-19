@@ -20,6 +20,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import {MatTableModule} from '@angular/material/table';
 import { CountriesTableComponent } from './countries-table/countries-table.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { ErrorHandlingInterceptor } from './interceptors/error-handling.interceptor';
 
 export function httpLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http)
@@ -57,7 +58,8 @@ export function httpLoaderFactory(http:HttpClient){
     })
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true}
+    {provide:HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true},
+    {provide:HTTP_INTERCEPTORS,useClass:ErrorHandlingInterceptor,multi:true}
   ],
   bootstrap: [AppComponent]
 })
