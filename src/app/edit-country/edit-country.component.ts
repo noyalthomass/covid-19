@@ -35,7 +35,7 @@ export class EditCountryComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private ds: DataService,
-    private activatedRoute: ActivatedRoute,
+    private readonly activatedRoute: ActivatedRoute,
     public translate:TranslateService
   ) {
     

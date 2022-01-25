@@ -3,7 +3,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import {  Subject, takeUntil } from 'rxjs';
+import {  finalize, Subject, take, takeUntil } from 'rxjs';
 import { Countries } from '../models/index';
 import { DataService } from '../services/data.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -14,7 +14,7 @@ const ELEMENT_DATA: Countries[] = [];
   templateUrl: './countries-table.component.html',
   styleUrls: ['./countries-table.component.scss'],
 })
-export class CountriesTableComponent implements OnInit ,OnDestroy{
+export class CountriesTableComponent implements OnInit {
   displayedColumns: string[] = [
     'title',
     'flag',
@@ -39,14 +39,18 @@ export class CountriesTableComponent implements OnInit ,OnDestroy{
 
   ngOnInit(): void {
     this.loadData();
-    
   }
   
   loadData() {
     this.spinner.show();
     this.service
       .getCountriesData()
-      .pipe(takeUntil(this.destroy$))
+      .pipe(
+        take(1),
+        finalize(()=>{
+          this.spinner.hide();
+        })
+      )
       .subscribe((res: any) => {
         res.forEach((country: any) => {
           ELEMENT_DATA.push({
@@ -63,7 +67,7 @@ export class CountriesTableComponent implements OnInit ,OnDestroy{
         this.dataSource = new MatTableDataSource<Countries>(ELEMENT_DATA);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        this.spinner.hide();
+        
       });
   }
   announceSortChange(sortState: Sort) {
@@ -79,8 +83,4 @@ export class CountriesTableComponent implements OnInit ,OnDestroy{
   }
   
 
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
-  }
 }
