@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize, take } from 'rxjs';
 
 @Component({
   selector: 'app-countries',
@@ -41,13 +42,8 @@ export class CountriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.countries){
-      this.spinner.show()
-      setTimeout(()=>{
-        this.spinner.hide()
-      },250)
-    }
-
+   
+    this.spinner.show()
     this.ds.sharedCountries.subscribe((countries) => {
       this.countries = countries;
       this.filteredCountries = this.countries.slice(0, this.pageSize);
@@ -55,7 +51,14 @@ export class CountriesComponent implements OnInit {
     });
     this.ds.nextCountries(this.filteredCountries);
     if (!this.filteredCountries.length) {
-      this.ds.get('https://corona.lmao.ninja/v2/countries').subscribe(
+      this.ds.get('https://corona.lmao.ninja/v2/countries')
+      .pipe(
+        take(1),
+        finalize(()=>{
+          this.spinner.hide()
+        })
+      )
+      .subscribe(
         (result: any) => {
           this.isLoading = false;
           if (result) {
