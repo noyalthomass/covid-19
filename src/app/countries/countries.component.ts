@@ -89,7 +89,6 @@ export class CountriesComponent implements OnInit {
   }
   onChangeEvent(event: any) {
     const searchValue = event.target.value.toLowerCase();
-
     this.filteredCountries = this.countries.filter((country) => {
       return country.title.toLowerCase().includes(searchValue);
     });
