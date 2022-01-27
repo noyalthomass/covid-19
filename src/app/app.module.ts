@@ -21,6 +21,8 @@ import {MatTableModule} from '@angular/material/table';
 import { CountriesTableComponent } from './countries-table/countries-table.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { ErrorHandlingInterceptor } from './interceptors/error-handling.interceptor';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { InternalErrorComponent } from './internal-error/internal-error.component';
 
 export function httpLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http)
@@ -33,7 +35,9 @@ export function httpLoaderFactory(http:HttpClient){
     DashboardComponent,
     CountriesComponent,
     EditCountryComponent,
-    CountriesTableComponent
+    CountriesTableComponent,
+    PageNotFoundComponent,
+    InternalErrorComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import {  finalize, Subject, take, takeUntil } from 'rxjs';
 import { Countries } from '../models/index';
 import { DataService } from '../services/data.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 const ELEMENT_DATA: Countries[] = [];
 @Component({
@@ -26,7 +27,8 @@ export class CountriesTableComponent implements OnInit {
   ];
   dataSource: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
-  isData:boolean;
+  noDataFound:boolean;
+
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
